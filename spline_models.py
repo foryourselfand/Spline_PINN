@@ -501,7 +501,7 @@ def superres_2d_velocity(weights,orders=[2,2],resolution_factor=1):
 		kernel_buffer_velocity_superres[res_key] = superres_kernels
 		save_buffers()
 	
-	output = F.conv_transpose2d(weights,superres_kernels[0],padding=0,stride=resolution_factor)
+	output = F.conv_transpose2d(toCuda(weights),toCuda(superres_kernels[0]),padding=0,stride=resolution_factor)
 	
 	return output[:,0:1],output[:,1:3],output[:,3:7],output[:,7:9]
 
@@ -569,7 +569,7 @@ def superres_2d_pressure(weights,orders=[0,0],resolution_factor=1):
 		kernel_buffer_pressure_superres[res_key] = superres_kernels
 		save_buffers()
 	
-	output = F.conv_transpose2d(weights,superres_kernels[0],padding=0,stride=resolution_factor)
+	output = F.conv_transpose2d(toCuda(weights),toCuda(superres_kernels[0]),padding=0,stride=resolution_factor)
 	
 	return output[:,0:1],output[:,1:3]
 
@@ -656,7 +656,7 @@ def superres_2d_wave(weights,orders=[1,1],resolution_factor=1):
 		kernel_buffer_wave_superres[res_key] = superres_kernels
 		save_buffers()
 	
-	output = F.conv_transpose2d(weights,superres_kernels[0],padding=0,stride=resolution_factor)
+	output = F.conv_transpose2d(toCuda(weights),toCuda(superres_kernels[0]),padding=0,stride=resolution_factor)
 	
 	return output[:,0:1],output[:,1:3],output[:,3:4],output[:,4:5]
 
