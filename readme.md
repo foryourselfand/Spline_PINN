@@ -33,15 +33,16 @@ This physics-*informed* method builds up on previous work that relies on a physi
 First, create a new Conda-environment:
 
 ```
-conda create --name my_cool_fluid_env python=3.7  
+conda create --name my_cool_fluid_env  
 conda activate my_cool_fluid_env
 ```
 
 Now, install the following packages:
 
 ```
-conda install pytorch torchvision cudatoolkit=10.2 -c pytorch  
-conda install matplotlib statsmodels natsort tensorboard pyevtk  
+conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia  
+conda install matplotlib statsmodels natsort tensorboard 
+conda install pyevtk -c conda-forge  
 pip install opencv-python
 ```
 
