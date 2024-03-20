@@ -13,6 +13,9 @@ import warnings
 from natsort import natsorted
 import pickle
 
+from get_param import get_device
+
+
 class Logger():
 	
 	def __init__(self,name,datetime=None,use_csv=True,use_tensorboard=False):
@@ -191,7 +194,7 @@ class Logger():
 				break
 		
 		path = 'Logger/{}/{}/states/{}.state'.format(self.name,datetime,index)
-		state = torch.load(path)
+		state = torch.load(path, map_location=get_device())
 		
 		if type(model) is not list:
 			model = [model]

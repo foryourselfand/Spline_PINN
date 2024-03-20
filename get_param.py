@@ -1,4 +1,5 @@
 import argparse
+import torch
 
 def str2bool(v):
 	"""
@@ -86,6 +87,9 @@ def get_hyperparam_wave(params):
 	return f"wave net {params.net}; hs {params.hidden_size}; oz {params.orders_z}; stiffness {params.stiffness}; damping {params.damping}; dt {params.dt};"
 
 params = params()
+
+def get_device():
+	return "cuda" if params.cuda and torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
 
 def toCuda(x):
 	if type(x) is tuple or type(x) is list:
